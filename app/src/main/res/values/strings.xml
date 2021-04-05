@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SpotSport</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDzptnspYbi1fd9O8XiEx-ZsLamLbnjRps</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

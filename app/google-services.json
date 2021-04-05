@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "471398029334",
+    "project_id": "spot-sport-afb49",
+    "storage_bucket": "spot-sport-afb49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471398029334:android:00e84cd0ae516ee6953d37",
+        "android_client_info": {
+          "package_name": "ehud.marchi.spotsport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "471398029334-at3l04p8742u96gkpi39ibr5nht2arb6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDITJcLCW-Ep7NfIua8HebKYdvOLbHxzu8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "471398029334-at3l04p8742u96gkpi39ibr5nht2arb6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

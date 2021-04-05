@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/curved"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingTop="3dp"
+    android:paddingBottom="3dp"
+    android:layout_marginBottom="10dp"
+    android:elevation="5dp">
+<TextView
+    android:id="@+id/name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Spot"
+    android:textColor="@color/black"
+    android:textSize="14sp"
+    android:background="@drawable/curved"
+    android:backgroundTint="@color/white"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_toLeftOf="@id/sport_image"
+    android:layout_below="@id/city"/>
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_toLeftOf="@id/sport_image"
+        android:layout_below="@id/name"/>
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_toLeftOf="@id/sport_image" />
+
+    <ImageView
+        android:id="@+id/sport_image"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"
+        />
+</RelativeLayout>
