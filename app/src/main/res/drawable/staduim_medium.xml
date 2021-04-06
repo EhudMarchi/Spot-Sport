@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="29dp"
-    android:height="29dp"
+    android:width="35dp"
+    android:height="35dp"
     android:viewportWidth="32"
     android:viewportHeight="32">
 
     <path
-        android:fillColor="#E74C3C"
+        android:fillColor="#FFD500"
         android:pathData="M30,20H2c9-5,0-10,0-10h28C30,10,21,15,30,20z" />
     <path
         android:fillColor="#FFFFFF"
@@ -15,22 +15,22 @@
         android:strokeWidth="1"
         android:pathData="M30,10h-3c0,0-9,5,0,10h3C21,15,30,10,30,10z" />
     <path
-        android:fillColor="#C0392B"
+        android:fillColor="#FFC107"
         android:pathData="M5,10H2c0,0,9,5,0,10h3C14,15,5,10,5,10z" />
     <path
-        android:fillColor="#E74C3C"
+        android:fillColor="#FFD500"
         android:pathData="M 2 20 H 11 V 26 H 2 V 20 Z" />
     <path
-        android:fillColor="#C0392B"
+        android:fillColor="#FFC107"
         android:pathData="M 2 20 H 4 V 26 H 2 V 20 Z" />
     <path
-        android:fillColor="#E74C3C"
+        android:fillColor="#FFD500"
         android:pathData="M 11 20 H 21 V 26 H 11 V 20 Z" />
     <path
-        android:fillColor="#C0392B"
+        android:fillColor="#FFC107"
         android:pathData="M 11 20 H 13 V 26 H 11 V 20 Z" />
     <path
-        android:fillColor="#E74C3C"
+        android:fillColor="#FFD500"
         android:pathData="M 21 20 H 30 V 26 H 21 V 20 Z" />
     <path
         android:fillColor="#FFFFFF"
@@ -39,13 +39,13 @@
         android:strokeWidth="1"
         android:pathData="M 28 20 H 30 V 26 H 28 V 20 Z" />
     <path
-        android:fillColor="#CDDC39"
+        android:fillColor="#673AB7"
         android:pathData="M 6 6 L 2 6 L 2 2 Z" />
     <path
-        android:fillColor="#CDDC39"
+        android:fillColor="#673AB7"
         android:pathData="M 20 6 L 16 6 L 16 2 Z" />
     <path
-        android:fillColor="#CDDC39"
+        android:fillColor="#673AB7"
         android:pathData="M 30 2 L 30 6 L 26 6 Z" />
     <path
         android:fillColor="@color/black"

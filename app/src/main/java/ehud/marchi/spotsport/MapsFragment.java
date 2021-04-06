@@ -43,22 +43,15 @@ public class MapsFragment extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
             mMap = googleMap;
             setUpClusterer();
-            BitmapDescriptor tempIcon;
-            int iconID;
-            clusterManager.setRenderer(new ClusterIconRenderer(getContext(), mMap, clusterManager));             
+            clusterManager.setRenderer(new ClusterIconRenderer(getContext(), mMap, clusterManager));
             Thread thread = new Thread(){
                 @Override
                 public void run() {
                     super.run();
 
-            for (SportSpotData spot : SpotSportUtills.spots) {
-                //LatLng temp = spot.getLatLng();
-            //tempIcon = BitmapFromVector(getContext(),spot.drawableSport);
-            //mMap.addMarker(new MarkerOptions().position(temp).title(spot.getPlaceName()+" "+spot.getSpotName()).icon(tempIcon));
-             //clusterManager.setRenderer(spot.drawableSport);
-
-            clusterManager.addItem(spot);
-            }
+                    for (SportSpotData spot : SpotSportUtills.spots) {
+                        clusterManager.addItem(spot);
+                    }
                 }
             };
             thread.start();
@@ -67,27 +60,6 @@ public class MapsFragment extends Fragment {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp,zoomLevel));
         }
     };
-    private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
-        // below line is use to generate a drawable.
-        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
-
-        // below line is use to set bounds to our vector drawable.
-        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
-
-        // below line is use to create a bitmap for our
-        // drawable which we have added.
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-
-        // below line is use to add bitmap in our canvas.
-        Canvas canvas = new Canvas(bitmap);
-
-        // below line is use to draw our
-        // vector drawable in canvas.
-        vectorDrawable.draw(canvas);
-
-        // after generating our bitmap we are returning our bitmap.
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
-    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,

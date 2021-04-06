@@ -129,6 +129,9 @@ public class SportSpotData implements ClusterItem {
             if (this.spotName.contains("קטן")) {
                 this.drawableSport = R.drawable.stadium_small;
             }
+            else if (this.spotName.contains("בינוני")) {
+                this.drawableSport = R.drawable.staduim_medium;
+            }
             else
             {
                 this.drawableSport = R.drawable.stadium_big;
@@ -146,9 +149,17 @@ public class SportSpotData implements ClusterItem {
         {
             this.drawableSport = R.drawable.skate;
         }
+        else if (this.spotName.contains("מחול")||this.placeName.contains("מחול"))
+        {
+            this.drawableSport = R.drawable.dance;
+        }
+        else if (this.spotName.contains("צלילה")||this.placeName.contains("צלילה"))
+        {
+            this.drawableSport = R.drawable.diving;
+        }
         else
         {
-            this.drawableSport = R.drawable.common_google_signin_btn_icon_dark;
+            this.drawableSport = R.drawable.general;
         }
     }
 

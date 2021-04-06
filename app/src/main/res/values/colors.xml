@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="torq">#00D4C6</color>
     <color name="grey">#B0B5B1</color>
+    <color name="dark_blue">#001045</color>
+    <color name="red">#dd000f</color>
 </resources>

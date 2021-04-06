@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -22,6 +23,7 @@ class ClusterIconRenderer extends DefaultClusterRenderer<SportSpotData> {
         this.context = context;
     }
 
+
     @Override
     protected void onBeforeClusterItemRendered(SportSpotData item, MarkerOptions markerOptions) {
         BitmapDescriptor tempIcon = BitmapFromVector(context,item.drawableSport);
@@ -31,21 +33,19 @@ class ClusterIconRenderer extends DefaultClusterRenderer<SportSpotData> {
         super.onBeforeClusterItemRendered(item, markerOptions);
     }
     private BitmapDescriptor BitmapFromVector(Context context, int vectorResId) {
-        // below line is use to generate a drawable.
+        // generate a drawable.
         Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
 
-        // below line is use to set bounds to our vector drawable.
+        // set bounds to our vector drawable.
         vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
 
-        // below line is use to create a bitmap for our
-        // drawable which we have added.
+        // create a bitmap for our drawable which we have added.
         Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
 
-        // below line is use to add bitmap in our canvas.
+        // add bitmap in our canvas.
         Canvas canvas = new Canvas(bitmap);
 
-        // below line is use to draw our
-        // vector drawable in canvas.
+        // draw our vector drawable in canvas.
         vectorDrawable.draw(canvas);
 
         // after generating our bitmap we are returning our bitmap.

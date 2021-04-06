@@ -10,14 +10,15 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/background_light">
+        android:background="@color/dark_blue">
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorColor="@color/red"
+            app:tabTextColor="@color/white"
             app:tabTextAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     </com.google.android.material.appbar.AppBarLayout>
