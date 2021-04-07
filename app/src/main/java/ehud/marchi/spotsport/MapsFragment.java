@@ -2,64 +2,73 @@ package ehud.marchi.spotsport;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-
 public class MapsFragment extends Fragment {
-    private GoogleMap mMap;
     private ClusterManager<SportSpotData> clusterManager;
+    Thread addSpotsThread;
+    private float radius = 0;
+    SeekBar radiusSeekbar;
+    TextView radiusText;
+    Circle circle;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-
-
 
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            mMap = googleMap;
+            SpotSportUtills.mMap = googleMap;
             setUpClusterer();
-            clusterManager.setRenderer(new ClusterIconRenderer(getContext(), mMap, clusterManager));
-            Thread thread = new Thread(){
+            ClusterIconRenderer renderer = new ClusterIconRenderer(getContext(), SpotSportUtills.mMap, clusterManager);
+            clusterManager.setRenderer(renderer);
+            SpotSportUtills.mMap.setOnCameraMoveListener(renderer);
+            addSpotsThread = new Thread() {
                 @Override
                 public void run() {
                     super.run();
-
                     for (SportSpotData spot : SpotSportUtills.spots) {
-                        clusterManager.addItem(spot);
+                            clusterManager.addItem(spot);
                     }
                 }
             };
-            thread.start();
-            LatLng temp = new LatLng(31.78006283,34.636054);
-            float zoomLevel = 10.0f;
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp,zoomLevel));
+            addSpotsThread.start();
         }
     };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -76,36 +85,43 @@ public class MapsFragment extends Fragment {
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+        radiusText = getActivity().findViewById(R.id.radius_text);
+        radiusSeekbar = getActivity().findViewById(R.id.radius);
+        radiusSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                radius = radiusSeekbar.getProgress();
+                if(circle!=null) {
+                    circle.remove();
+                }
+                addCircle(radius);
+                radiusText.setText("Radius: "+(int)radius+" meters");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
     }
+
     private void setUpClusterer() {
         // Position the map.
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
-
+        SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(31.78006283, 34.636054), 9.8f));
         // Initialize the manager with the context and the map.
-        // (Activity extends context, so we can pass 'this' in the constructor.)
-        clusterManager = new ClusterManager<SportSpotData>(getContext(), mMap);
-
+        clusterManager = new ClusterManager<SportSpotData>(getContext(), SpotSportUtills.mMap);
         // Point the map's listeners at the listeners implemented by the cluster
         // manager.
-        mMap.setOnCameraIdleListener(clusterManager);
-        mMap.setOnMarkerClickListener(clusterManager);
-
-        // Add cluster items (markers) to the cluster manager.
+        SpotSportUtills.mMap.setOnCameraIdleListener(clusterManager);
+        SpotSportUtills.mMap.setOnMarkerClickListener(clusterManager);
     }
-
-//    private void addItems() {
-//
-//        // Set some lat/lng coordinates to start with.
-//        double lat = 51.5145160;
-//        double lng = -0.1270060;
-//
-//        // Add ten cluster items in close proximity, for purposes of this example.
-//        for (int i = 0; i < 10; i++) {
-//            double offset = i / 60d;
-//            lat = lat + offset;
-//            lng = lng + offset;
-//            SportSpotData offsetItem = new SportSpotData(lat, lng, "Title " + i, "Snippet " + i);
-//            clusterManager.addItem(offsetItem);
-//        }
-//    }
+    private void addCircle(float radius)
+    {
+        LatLng temp = new LatLng(SpotSportUtills.latitude, SpotSportUtills.longitude);
+        circle = SpotSportUtills.mMap.addCircle(new CircleOptions().center(temp).radius(radius).strokeColor(R.color.red).fillColor(R.color.yellow_soft));
+    }
 }

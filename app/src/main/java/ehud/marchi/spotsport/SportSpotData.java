@@ -141,11 +141,7 @@ public class SportSpotData implements ClusterItem {
         {
             this.drawableSport = R.drawable.combine;
         }
-        else if (this.spotName.contains("ימי")||this.placeName.contains("ימי")||this.spotName.contains("ים")||this.placeName.contains("ים"))
-        {
-            this.drawableSport = R.drawable.sea;
-        }
-        else if (this.spotName.contains("סקייט")||this.placeName.contains("סקייט"))
+        else if (this.spotName.contains("סקייט")||this.placeName.contains("סקייט")||this.spotName.contains("אקסטרים")||this.placeName.contains("אקסטרים"))
         {
             this.drawableSport = R.drawable.skate;
         }
@@ -156,6 +152,10 @@ public class SportSpotData implements ClusterItem {
         else if (this.spotName.contains("צלילה")||this.placeName.contains("צלילה"))
         {
             this.drawableSport = R.drawable.diving;
+        }
+        else if (this.spotName.contains("ימי")||this.placeName.contains("ימי")||this.spotName.contains("ים")||this.placeName.contains("ים"))
+        {
+            this.drawableSport = R.drawable.sea;
         }
         else
         {

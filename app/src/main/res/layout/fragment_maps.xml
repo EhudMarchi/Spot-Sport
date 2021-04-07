@@ -14,5 +14,38 @@
         android:paddingBottom="25dp"
         android:padding="20dp"
         android:gravity="bottom">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="75dp"
+    android:background="@drawable/curved"
+    android:backgroundTint="@color/white"
+    android:layout_marginBottom="15dp"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:elevation="1dp">
+    <TextView
+        android:layout_above="@id/radius"
+        android:id="@+id/radius_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Radius: "
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <SeekBar
+        android:id="@+id/radius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:max="10000"
+        android:progress="0"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/dark_blue"
+        android:thumbTint="@color/dark_blue" />
+</RelativeLayout>
     </RelativeLayout>
 </fragment>

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DashboardFragment"
-    >
+    tools:context=".DashboardFragment">
     <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
@@ -31,7 +30,7 @@
     <RelativeLayout
         android:id="@+id/anim_layout"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_below="@id/top_layout">
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
@@ -40,7 +39,7 @@
             app:lottie_url="REPLACE_JSON_URL"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             app:lottie_rawRes="@raw/pullups" />
         <ImageView
             android:id="@+id/logo"
@@ -65,8 +64,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spots_recyclerview"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
     </androidx.recyclerview.widget.RecyclerView>
 
 
