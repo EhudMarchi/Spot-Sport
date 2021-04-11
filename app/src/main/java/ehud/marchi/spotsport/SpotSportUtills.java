@@ -17,6 +17,23 @@ import java.util.Locale;
 
 public class SpotSportUtills {
     public static ArrayList<SportSpotData> spots = new ArrayList<>();
+    public static ArrayList<SportSpotData> basketball = new ArrayList<>();
+    public static ArrayList<SportSpotData> combine = new ArrayList<>();
+    public static ArrayList<SportSpotData> dance = new ArrayList<>();
+    public static ArrayList<SportSpotData> diving = new ArrayList<>();
+    public static ArrayList<SportSpotData> general = new ArrayList<>();
+    public static ArrayList<SportSpotData> gym = new ArrayList<>();
+    public static ArrayList<SportSpotData> karate = new ArrayList<>();
+    public static ArrayList<SportSpotData> outdoor = new ArrayList<>();
+    public static ArrayList<SportSpotData> sea = new ArrayList<>();
+    public static ArrayList<SportSpotData> skate = new ArrayList<>();
+    public static ArrayList<SportSpotData> soccer = new ArrayList<>();
+    public static ArrayList<SportSpotData> stadiumBig = new ArrayList<>();
+    public static ArrayList<SportSpotData> stadiumSmall = new ArrayList<>();
+    public static ArrayList<SportSpotData> stadiumMed = new ArrayList<>();
+    public static ArrayList<SportSpotData> swim = new ArrayList<>();
+    public static ArrayList<SportSpotData> tennis = new ArrayList<>();
+    public static ArrayList<SportSpotData> volleyball = new ArrayList<>();
     public  static GoogleMap mMap;
     public  static double latitude, longitude;
 

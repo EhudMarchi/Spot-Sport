@@ -64,7 +64,71 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         readSpotsThread.start();
+        try {
+            readSpotsThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        splitSpots();
+    }
 
+    private void splitSpots() {
+        for (SportSpotData spot:SpotSportUtills.spots) {
+            switch (spot.drawableSport)
+            {
+                case R.drawable.basketball:
+                    SpotSportUtills.basketball.add(spot);
+                    break;
+                case R.drawable.combine:
+                    SpotSportUtills.combine.add(spot);
+                    break;
+                case R.drawable.dance:
+                    SpotSportUtills.dance.add(spot);
+                    break;
+                case R.drawable.diving:
+                    SpotSportUtills.diving.add(spot);
+                    break;
+                case R.drawable.general:
+                    SpotSportUtills.general.add(spot);
+                    break;
+                case R.drawable.gym:
+                    SpotSportUtills.gym.add(spot);
+                    break;
+                case R.drawable.karate:
+                    SpotSportUtills.karate.add(spot);
+                    break;
+                case R.drawable.outdoor_gym:
+                    SpotSportUtills.outdoor.add(spot);
+                    break;
+                case R.drawable.sea:
+                    SpotSportUtills.sea.add(spot);
+                    break;
+                case R.drawable.skate:
+                    SpotSportUtills.skate.add(spot);
+                    break;
+                case R.drawable.soccer:
+                    SpotSportUtills.soccer.add(spot);
+                    break;
+                case R.drawable.stadium_big:
+                    SpotSportUtills.stadiumBig.add(spot);
+                    break;
+                case R.drawable.stadium_small:
+                    SpotSportUtills.stadiumSmall.add(spot);
+                    break;
+                case R.drawable.staduim_medium:
+                    SpotSportUtills.stadiumMed.add(spot);
+                    break;
+                case R.drawable.swim:
+                    SpotSportUtills.swim.add(spot);
+                    break;
+                case R.drawable.tennis:
+                    SpotSportUtills.tennis.add(spot);
+                    break;
+                case R.drawable.volleyball:
+                    SpotSportUtills.volleyball.add(spot);
+                    break;
+            }
+        }
     }
 
     private void readData() {
@@ -134,10 +198,12 @@ public class MainActivity extends AppCompatActivity {
                 SpotSportUtills.longitude = lastLocation.getLongitude();
                 LatLng temp = new LatLng(SpotSportUtills.latitude, SpotSportUtills.longitude);
                 float zoomLevel = 13.8f;
-                SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp,zoomLevel));
-                SpotSportUtills.mMap.addMarker(new MarkerOptions().position(temp).title("My Location").snippet(SpotSportUtills.getAddress(MainActivity.this,temp).getAddressLine(0)));
-                Circle circle = SpotSportUtills.mMap.addCircle(new CircleOptions().center(temp).radius(1000).strokeColor(R.color.red).fillColor(R.color.yellow_soft));
-                circle.remove();
+                if(SpotSportUtills.mMap!=null) {
+                    SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp, zoomLevel));
+                    SpotSportUtills.mMap.addMarker(new MarkerOptions().position(temp).title("My Location").snippet(SpotSportUtills.getAddress(MainActivity.this, temp).getAddressLine(0)));
+                    Circle circle = SpotSportUtills.mMap.addCircle(new CircleOptions().center(temp).radius(1000).strokeColor(R.color.red).fillColor(R.color.yellow_soft));
+                    circle.remove();
+                }
             }
         };
         LocationRequest request = LocationRequest.create();

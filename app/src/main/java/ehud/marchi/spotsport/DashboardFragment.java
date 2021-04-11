@@ -1,5 +1,9 @@
 package ehud.marchi.spotsport;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -20,7 +29,7 @@ public class DashboardFragment extends Fragment {
     private RecyclerView spotsRecyclerView;
     private SpotAdapter recyclerViewAdapter;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
-    ArrayList<SportSpotData> spots;
+    ImageButton info;
     private SearchView searchView;
 
     public DashboardFragment() {
@@ -53,6 +62,16 @@ public class DashboardFragment extends Fragment {
         setUpSpotsRecyclerView();
         searchView = (SearchView)getView().findViewById(R.id.search);
         setSearchFilter();
+        info = getView().findViewById(R.id.info);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.dialog_info);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
     }
 
     private void setUpSpotsRecyclerView() {

@@ -41,6 +41,16 @@
             app:lottie_loop="true"
             android:scaleType="fitCenter"
             app:lottie_rawRes="@raw/pullups" />
+        <ImageButton
+            android:id="@+id/info"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:drawable/ic_dialog_info"
+            android:backgroundTint="@color/white"/>
         <ImageView
             android:id="@+id/logo"
             android:layout_width="240dp"

@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -86,6 +87,13 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
                 TextView addressTextView = dialog.findViewById(R.id.address);
                 Address address = SpotSportUtills.getAddress(m_Context,currentSpot.getLatLng());
                 addressTextView.setText(address.getAddressLine(0));
+                Button cancel =dialog.findViewById(R.id.cancel_btn);
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
                 dialog.show();
             }
         });
