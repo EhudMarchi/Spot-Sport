@@ -184,6 +184,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        startLocation();
+    }
+
     private void startLocation() {
 
         client = LocationServices.getFusedLocationProviderClient(this);
@@ -203,6 +209,10 @@ public class MainActivity extends AppCompatActivity {
                     SpotSportUtills.mMap.addMarker(new MarkerOptions().position(temp).title("My Location").snippet(SpotSportUtills.getAddress(MainActivity.this, temp).getAddressLine(0)));
                     Circle circle = SpotSportUtills.mMap.addCircle(new CircleOptions().center(temp).radius(1000).strokeColor(R.color.red).fillColor(R.color.yellow_soft));
                     circle.remove();
+                }
+                else
+                {
+                    startLocation();
                 }
             }
         };

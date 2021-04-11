@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +16,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -26,11 +29,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -39,6 +45,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 
 import java.util.ArrayList;
@@ -192,7 +201,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.basketball) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(0).setAlpha(0.5f);
+                    filters.get(0).setAlpha(0.4f);
                 }
                 else
                 {
@@ -209,7 +218,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.combine) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(1).setAlpha(0.5f);
+                    filters.get(1).setAlpha(0.4f);
                 }
                 else
                 {
@@ -226,7 +235,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.dance) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(2).setAlpha(0.5f);
+                    filters.get(2).setAlpha(0.4f);
                 }
                 else
                 {
@@ -243,7 +252,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.diving) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(3).setAlpha(0.5f);
+                    filters.get(3).setAlpha(0.4f);
                 }
                 else
                 {
@@ -260,7 +269,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.general) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(4).setAlpha(0.5f);
+                    filters.get(4).setAlpha(0.4f);
                 }
                 else
                 {
@@ -277,7 +286,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.gym) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(5).setAlpha(0.5f);
+                    filters.get(5).setAlpha(0.4f);
                 }
                 else
                 {
@@ -294,7 +303,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.karate) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(6).setAlpha(0.5f);
+                    filters.get(6).setAlpha(0.4f);
                 }
                 else
                 {
@@ -311,7 +320,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.outdoor) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(7).setAlpha(0.5f);
+                    filters.get(7).setAlpha(0.4f);
                 }
                 else
                 {
@@ -328,7 +337,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.sea) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(8).setAlpha(0.5f);
+                    filters.get(8).setAlpha(0.4f);
                 }
                 else
                 {
@@ -345,7 +354,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.skate) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(9).setAlpha(0.5f);
+                    filters.get(9).setAlpha(0.4f);
                 }
                 else
                 {
@@ -362,7 +371,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.soccer) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(10).setAlpha(0.5f);
+                    filters.get(10).setAlpha(0.4f);
                 }
                 else
                 {
@@ -379,7 +388,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.stadiumBig) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(11).setAlpha(0.5f);
+                    filters.get(11).setAlpha(0.4f);
                 }
                 else
                 {
@@ -396,7 +405,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.stadiumMed) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(12).setAlpha(0.5f);
+                    filters.get(12).setAlpha(0.4f);
                 }
                 else
                 {
@@ -413,7 +422,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.stadiumSmall) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(13).setAlpha(0.5f);
+                    filters.get(13).setAlpha(0.4f);
                 }
                 else
                 {
@@ -430,7 +439,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.swim) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(14).setAlpha(0.5f);
+                    filters.get(14).setAlpha(0.4f);
                 }
                 else
                 {
@@ -447,7 +456,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.tennis) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(15).setAlpha(0.5f);
+                    filters.get(15).setAlpha(0.4f);
                 }
                 else
                 {
@@ -464,7 +473,7 @@ public class MapsFragment extends Fragment {
                     for (SportSpotData item:SpotSportUtills.volleyball) {
                         clusterManager.removeItem(item);
                     }
-                    filters.get(16).setAlpha(0.5f);
+                    filters.get(16).setAlpha(0.4f);
                 }
                 else
                 {
@@ -476,7 +485,7 @@ public class MapsFragment extends Fragment {
     }
     private void setUpClusterer() {
         // Position the map.
-        SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(31.78006283, 34.636054), 9.8f));
+        //SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(31.78006283, 34.636054), 9.8f));
         // Initialize the manager with the context and the map.
         clusterManager = new ClusterManager<SportSpotData>(getContext(), SpotSportUtills.mMap);
         // Point the map's listeners at the listeners implemented by the cluster
