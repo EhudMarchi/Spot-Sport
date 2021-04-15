@@ -38,9 +38,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 public class MainActivity extends AppCompatActivity {
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     private TabLayout tabLayout;
-    private TabAccessorAdapter tabAccessorAdapter;
+    public static TabAccessorAdapter tabAccessorAdapter;
     private static final int LOCATION_PERMISSION_REQUEST = 1;
     private float radius;
     FusedLocationProviderClient client;

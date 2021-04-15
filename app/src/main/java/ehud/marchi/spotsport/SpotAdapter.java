@@ -19,9 +19,11 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -79,9 +81,12 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 TextView name = dialog.findViewById(R.id.name);
                 TextView type = dialog.findViewById(R.id.type);
+                TextView distance = dialog.findViewById(R.id.distance);
                 ImageView icon = dialog.findViewById(R.id.icon);
                 name.setText(currentSpot.getPlaceName());
                 type.setText(currentSpot.getSpotName());
+                // displaying location distance from user
+                distance.setText(new DecimalFormat("##.##").format(SpotSportUtills.getKmFromLatLong(currentSpot.getLatLng().latitude,currentSpot.getLatLng().longitude,SpotSportUtills.latitude,SpotSportUtills.longitude))+" Km away from you");
                 Glide.with(m_Context).load(currentSpot.getDrawableSport()).into(icon);
                 // displaying full address
                 TextView addressTextView = dialog.findViewById(R.id.address);
@@ -91,6 +96,15 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                Button yes =dialog.findViewById(R.id.yes_btn);
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentSpot.getLatLng(),17.8f));
+                        MainActivity.viewPager.setCurrentItem(1);
                         dialog.dismiss();
                     }
                 });
