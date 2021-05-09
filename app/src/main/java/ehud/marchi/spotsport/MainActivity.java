@@ -32,17 +32,22 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public static ViewPager viewPager;
     private TabLayout tabLayout;
     public static TabAccessorAdapter tabAccessorAdapter;
     private static final int LOCATION_PERMISSION_REQUEST = 1;
-    private float radius;
     FusedLocationProviderClient client;
 
     @Override
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         splitSpots();
+        loadData();
     }
 
     private void splitSpots() {
@@ -190,6 +196,12 @@ public class MainActivity extends AppCompatActivity {
         startLocation();
     }
 
+    @Override
+    protected void onDestroy() {
+        saveData();
+        super.onDestroy();
+    }
+
     private void startLocation() {
 
         client = LocationServices.getFusedLocationProviderClient(this);
@@ -223,5 +235,33 @@ public class MainActivity extends AppCompatActivity {
             client.requestLocationUpdates(request,callback,null);
         else if(Build.VERSION.SDK_INT<=22)
             client.requestLocationUpdates(request,callback,null);
+    }
+
+    private void loadData() {
+        try {
+            FileInputStream fis = openFileInput("favSpots.dat");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            SpotSportUtills.favSpots = (ArrayList<SportSpotData>) ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveData() {
+        try {
+            FileOutputStream fos = openFileOutput("favSpots.dat", MODE_PRIVATE);
+            ObjectOutputStream oow = new ObjectOutputStream(fos);
+            oow.writeObject(SpotSportUtills.favSpots);
+            oow.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

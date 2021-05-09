@@ -14,19 +14,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder> implements Filterable {
     private ArrayList<SportSpotData> spots;
@@ -37,6 +45,7 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
     public class SpotViewHolder extends RecyclerView.ViewHolder {
         public ImageView sportImage;
         public TextView spotName,spotCity, spotType;
+        ImageButton fav;
         View rowView;
         public SpotViewHolder(View itemView) {
             super(itemView);
@@ -45,6 +54,7 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
             spotName = itemView.findViewById(R.id.name);
             spotCity = itemView.findViewById(R.id.city);
             spotType = itemView.findViewById(R.id.type);
+            fav = itemView.findViewById(R.id.favorites);
             rowView = itemView;
         }
     }
@@ -72,7 +82,6 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
         holder.spotCity.setText(currentSpot.getCity());
         holder.spotName.setText(currentSpot.getPlaceName());
         holder.spotType.setText(currentSpot.getSpotName());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +101,7 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
                 TextView addressTextView = dialog.findViewById(R.id.address);
                 Address address = SpotSportUtills.getAddress(m_Context,currentSpot.getLatLng());
                 addressTextView.setText(address.getAddressLine(0));
+                TextView addToFav = dialog.findViewById(R.id.add_fav);
                 Button cancel =dialog.findViewById(R.id.cancel_btn);
                 cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -103,16 +113,47 @@ public class SpotAdapter extends RecyclerView.Adapter<SpotAdapter.SpotViewHolder
                 yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentSpot.getLatLng(),17.8f));
-                        MainActivity.viewPager.setCurrentItem(1);
+                        SpotSportUtills.mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentSpot.getLatLng(),17.8f));//zoom in location
+                        MainActivity.viewPager.setCurrentItem(1);// switch to maps fragment
                         dialog.dismiss();
                     }
                 });
+                if(SpotSportUtills.favSpots.contains(currentSpot))
+                {
+                    addToFav.setText("Remove from favorites");
+                }
+                    addToFav.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(addToFav.getText().equals("Add to favorites")) {
+                                Toast.makeText(m_Context, currentSpot.getPlaceName() + " added to favorites", Toast.LENGTH_SHORT).show();
+                                addToFav.setText("Remove from favorites");
+                            }
+                            else {
+                                SpotSportUtills.favSpots.remove(currentSpot);
+                                Toast.makeText(m_Context, currentSpot.getPlaceName() + " removed from favorites", Toast.LENGTH_SHORT).show();
+                                addToFav.setText("Add to favorites");
+                            }
+                            notifyItemChanged(position);
+                            saveData();
+                        }
+                    });
                 dialog.show();
             }
         });
     }
-
+    private void saveData() {
+        try {
+            FileOutputStream fos = m_Context.openFileOutput("favSpots.dat", MODE_PRIVATE);
+            ObjectOutputStream oow = new ObjectOutputStream(fos);
+            oow.writeObject(SpotSportUtills.favSpots);
+            oow.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public long getItemId(int position) {
         return position;

@@ -10,13 +10,21 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class SpotSportUtills {
     public static ArrayList<SportSpotData> spots = new ArrayList<>();
+    public static ArrayList<SportSpotData> favSpots = new ArrayList<>();
     public static ArrayList<SportSpotData> basketball = new ArrayList<>();
     public static ArrayList<SportSpotData> combine = new ArrayList<>();
     public static ArrayList<SportSpotData> dance = new ArrayList<>();

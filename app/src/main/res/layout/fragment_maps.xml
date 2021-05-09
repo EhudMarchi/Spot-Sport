@@ -45,7 +45,8 @@
                 android:background="@drawable/basketball"
                 android:scaleType="centerCrop"
                 android:layout_alignParentLeft="true"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -56,6 +57,8 @@
                 android:layout_toRightOf="@id/basketball_filter"
                 android:background="@drawable/combine"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -66,6 +69,8 @@
                 android:layout_toRightOf="@id/combine_filter"
                 android:background="@drawable/dance"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -76,6 +81,8 @@
                 android:layout_toRightOf="@id/dance_filter"
                 android:background="@drawable/diving"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -86,6 +93,8 @@
                 android:layout_toRightOf="@id/diving_filter"
                 android:background="@drawable/general"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -96,16 +105,31 @@
                 android:layout_toRightOf="@id/general_filter"
                 android:background="@drawable/gym"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/close_filter"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_toRightOf="@id/gym_filter"
+                android:background="@android:drawable/ic_delete"
+                android:backgroundTint="@color/dark_blue"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"/>
             <ImageButton
                 android:visibility="gone"
                 android:id="@+id/karate_filter"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_toRightOf="@id/gym_filter"
+                android:layout_below="@id/basketball_filter"
                 android:background="@drawable/karate"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -114,29 +138,24 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_toRightOf="@id/karate_filter"
+                android:layout_below="@id/basketball_filter"
                 android:background="@drawable/outdoor_gym"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/close_filter"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_toRightOf="@id/outdoor_gym_filter"
-                android:background="@android:drawable/ic_delete"
-                android:backgroundTint="@color/dark_blue"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"/>
             <ImageButton
                 android:visibility="gone"
                 android:id="@+id/sea_filter"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:layout_toRightOf="@id/outdoor_gym_filter"
                 android:layout_below="@id/basketball_filter"
                 android:background="@drawable/sea"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -148,6 +167,8 @@
                 android:layout_toRightOf="@id/sea_filter"
                 android:background="@drawable/skate"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"/>
             <ImageButton
@@ -159,6 +180,8 @@
                 android:layout_toRightOf="@id/skate_filter"
                 android:background="@drawable/soccer"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -170,6 +193,8 @@
                 android:layout_toRightOf="@id/soccer_filter"
                 android:background="@drawable/stadium_big"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -177,10 +202,11 @@
                 android:id="@+id/staduim_medium_filter"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/basketball_filter"
-                android:layout_toRightOf="@id/stadium_big_filter"
+                android:layout_below="@id/karate_filter"
                 android:background="@drawable/staduim_medium"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -188,10 +214,12 @@
                 android:id="@+id/stadium_small_filter"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/basketball_filter"
+                android:layout_below="@id/karate_filter"
                 android:layout_toRightOf="@id/staduim_medium_filter"
                 android:background="@drawable/stadium_small"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -199,7 +227,7 @@
                 android:id="@+id/swim_filter"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/basketball_filter"
+                android:layout_below="@id/karate_filter"
                 android:layout_toRightOf="@id/stadium_small_filter"
                 android:background="@drawable/swim"
                 android:scaleType="centerCrop"
@@ -210,10 +238,12 @@
                 android:id="@+id/tennis_filter"
                 android:layout_width="20dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/basketball_filter"
+                android:layout_below="@id/karate_filter"
                 android:layout_toRightOf="@id/swim_filter"
                 android:background="@drawable/tennis"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
             <ImageButton
@@ -221,10 +251,12 @@
                 android:id="@+id/volleyball_filter"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:layout_below="@id/basketball_filter"
+                android:layout_below="@id/karate_filter"
                 android:layout_toRightOf="@id/tennis_filter"
                 android:background="@drawable/volleyball"
                 android:scaleType="centerCrop"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"/>
         </RelativeLayout>

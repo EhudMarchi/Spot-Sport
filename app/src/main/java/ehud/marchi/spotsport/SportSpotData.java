@@ -3,7 +3,9 @@ package ehud.marchi.spotsport;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
-public class SportSpotData implements ClusterItem {
+import java.io.Serializable;
+
+public class SportSpotData implements ClusterItem, Serializable {
     String placeName;
     String city;
     String type;

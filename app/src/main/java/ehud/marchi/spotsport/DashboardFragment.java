@@ -29,7 +29,8 @@ public class DashboardFragment extends Fragment {
     private RecyclerView spotsRecyclerView;
     private SpotAdapter recyclerViewAdapter;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
-    ImageButton info;
+    ImageButton info, fav;
+    boolean favorites = false;
     private SearchView searchView;
 
     public DashboardFragment() {
@@ -70,6 +71,26 @@ public class DashboardFragment extends Fragment {
                 dialog.setContentView(R.layout.dialog_info);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+            }
+        });
+        fav = getView().findViewById(R.id.favorites);
+        fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!favorites)
+                {
+                recyclerViewAdapter = new SpotAdapter(getContext(), SpotSportUtills.favSpots);
+                spotsRecyclerView.setAdapter(recyclerViewAdapter);
+                favorites = true;
+                fav.setAlpha(1f);
+                }
+                else
+                {
+                    recyclerViewAdapter = new SpotAdapter(getContext(), SpotSportUtills.spots);
+                    spotsRecyclerView.setAdapter(recyclerViewAdapter);
+                    favorites = false;
+                    fav.setAlpha(0.6f);
+                }
             }
         });
     }

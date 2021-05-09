@@ -51,6 +51,18 @@
             android:layout_marginTop="5dp"
             android:background="@android:drawable/ic_dialog_info"
             android:backgroundTint="@color/white"/>
+        <ImageButton
+            android:id="@+id/favorites"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:drawable/btn_star_big_on"
+            android:backgroundTint="@color/yellow"
+            android:alpha="0.6"
+            android:elevation="2dp"/>
         <ImageView
             android:id="@+id/logo"
             android:layout_width="240dp"
