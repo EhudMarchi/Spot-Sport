@@ -24,7 +24,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SpotSportUtills {
     public static ArrayList<SportSpotData> spots = new ArrayList<>();
-    public static ArrayList<SportSpotData> favSpots = new ArrayList<>();
     public static ArrayList<SportSpotData> basketball = new ArrayList<>();
     public static ArrayList<SportSpotData> combine = new ArrayList<>();
     public static ArrayList<SportSpotData> dance = new ArrayList<>();

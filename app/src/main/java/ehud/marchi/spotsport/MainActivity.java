@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         splitSpots();
-        loadData();
     }
 
     private void splitSpots() {
@@ -198,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        saveData();
         super.onDestroy();
     }
 
@@ -235,33 +233,5 @@ public class MainActivity extends AppCompatActivity {
             client.requestLocationUpdates(request,callback,null);
         else if(Build.VERSION.SDK_INT<=22)
             client.requestLocationUpdates(request,callback,null);
-    }
-
-    private void loadData() {
-        try {
-            FileInputStream fis = openFileInput("favSpots.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            SpotSportUtills.favSpots = (ArrayList<SportSpotData>) ois.readObject();
-            ois.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void saveData() {
-        try {
-            FileOutputStream fos = openFileOutput("favSpots.dat", MODE_PRIVATE);
-            ObjectOutputStream oow = new ObjectOutputStream(fos);
-            oow.writeObject(SpotSportUtills.favSpots);
-            oow.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

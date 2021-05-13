@@ -189,31 +189,7 @@
                 android:text="yes"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/go_to"
-            android:id="@+id/add_fav"
-            android:visibility="visible"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Add to favorites"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:elevation="2dp"
-            android:textSize="13sp"
-            android:background="@drawable/curved"
-            android:backgroundTint="@color/dark_blue"
-            android:layout_centerHorizontal="true"
-            android:textStyle="bold"
-            android:drawableLeft="@android:drawable/btn_star_big_on"
-            android:drawableTint="@color/yellow"
-            android:drawablePadding="5dp"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/white"/>
-
     </RelativeLayout>
 
 
